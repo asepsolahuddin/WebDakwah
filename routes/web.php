@@ -15,7 +15,8 @@ use App\Http\Controllers\SuperadminControler;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/halaman-video',[HomeController::class, 'video']);
-Route::get('/detail-video',[HomeController::class, 'detail_video']);
+Route::get('/detail-video/{id}',[HomeController::class, 'detail_video'])->name('detail.video');
+Route::get('/search-video',[HomeController::class, 'search_video'])->name('search.video');
 Route::get('/welcome/{id}', [HomeController::class, 'detail_artikel'])->name('welcome.artikel');
 Route::get('/halaman-artikel',[HomeController::class, 'artikel'])->name('post.artikel');
 

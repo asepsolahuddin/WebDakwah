@@ -65,19 +65,6 @@
 
     </div>
   </header>
-
-  <section class="breadcrumbs">
-    <nav class="flex-div">
-      <div class="container">
-        <h2>Video</h2>
-      </div>
-      <div class="nav-middle flex-div">
-        <div class="search-box flex-div">
-          <input type="text" placeholder="Search" />
-          <a href=""><img src="{{ asset('images/video/search.png') }}" alt="" /></a>
-        </div>
-      </div>
-    </nav>
     
   </section>
 

@@ -16,7 +16,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data User</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $userCount }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-user fa-2x text-gray-300"></i>
@@ -34,7 +34,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Artikel</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $artikelCount }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-regular fa-newspaper fa-2x text-gray-300"></i>
@@ -52,7 +52,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Video</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $videoCount }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-video fa-2x text-gray-300"></i>

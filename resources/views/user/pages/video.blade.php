@@ -7,21 +7,23 @@
     <img src="{{ asset('images/video/banner.png') }}" alt="" />
   </div>
   <div class="list-container">
+    @foreach ($videos as $video)
     <div class="vid-list">
-      <a href="{{  }}"
-        ><img src="{{ asset('images/video/thumbnail1.png') }}" class="thumbnail" alt=""
+      <a href="{{ route('detail.video', $video->id) }}"
+        ><img src="{{ asset('/storage/products/'.$video->cover_path) }}" class="thumbnail" alt=""
       /></a>
       <div class="flex-div">
         <div class="vid-info">
           <a href="play-video.html"
-            >Best chanel ro learn coding that help you to be a web
-            developer</a
+            >{{ $video->judul }}</a
           >
           <p>Easy Tutorials</p>
           <p>15k Views 2 days</p>
         </div>
       </div>
-    </div>
+    </div> 
+    @endforeach
+    
     <div class="vid-list">
       <a href=""
         ><img src="{{ asset('images/video/thumbnail2.png') }}" class="thumbnail" alt=""

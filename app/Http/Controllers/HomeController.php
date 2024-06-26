@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -50,13 +51,30 @@ class HomeController extends Controller
 
     }
 
+    
+
     public function video(){
-        return view('user.pages.video');
+        $videos = Video::orderBy('created_at', 'desc')->get();
+
+        return view('user.pages.video', compact('videos'));
     
     }
 
-    public function detail_video(){
-        return view('user.pages.detail-video');
+    public function detail_video(string $id){
+        $films = Video::FindorFail($id);
+        $recents = $this->recent_video();
+        return view('user.pages.detail-video', compact('films','recents'));
+    }
+
+    public function recent_video(){
+        return video::orderBy('created_at', 'desc')->take(6)->get();
+    }
+
+    public function search_video(Request $request){
+        $query = $request->input('query');
+        $results = Video::where('judul', 'LIKE', "%$query%")->paginate(6);
+
+        return view('user.pages.search-video', compact('results', 'query'));
     }
 
     /**

@@ -70,12 +70,12 @@
   <section class="breadcrumbs">
     <nav class="flex-div">
       <div class="container">
-        <h2>Video</h2>
+        <a href="{{ url('/halaman-video') }}"><h2>Video</h2></a>
       </div>
       <div class="nav-middle flex-div">
         <div class="search-box flex-div">
-          <input type="text" placeholder="Search" />
-          <a href=""><img src="{{ asset('images/video/search.png') }}" alt="" /></a>
+          <input type="text" placeholder="Search" id="search-input"  placeholder="Search..."/>
+          <img src="{{ asset('images/video/search.png') }}" alt="Search" onclick="search()"/>
         </div>
       </div>
     </nav>
@@ -92,14 +92,19 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('js/home/main.js') }}"></script>
   <script>
-    var menuIcon = document.querySelector(".menu-icon");
-    var sidebar = document.querySelector(".sidebar");
-v   ar container = document.querySelector(".container");
+  //     var menuIcon = document.querySelector(".menu-icon");
+  //     var sidebar = document.querySelector(".sidebar");
+  // v   ar container = document.querySelector(".container");
 
-    menuIcon.onclick = function () {
-    sidebar.classList.toggle("small-sidebar");
-    container.classList.toggle("large-container");
-    };
+  //     menuIcon.onclick = function () {
+  //     sidebar.classList.toggle("small-sidebar");
+  //     container.classList.toggle("large-container");
+  //     };
+
+    function search() {
+    var query = document.getElementById('search-input').value;
+    window.location.href = "{{ route('search.video') }}" + "?query=" + encodeURIComponent(query);
+    }
   </script>
 
 </body>

@@ -1,23 +1,22 @@
 @extends('user.layout.main-video')
 
 @section('content-page')
-<div class="container play-container">
+<div class="container play-container" style="padding-top: 20px">
   <div class="row">
     <div class="play-video">
-      <video controls autoplay>
-        <source src="{{ asset('images/video/video.mp4') }}" type="video/mp4" />
-      </video>
+      <iframe src="{{ $films->video_url }}" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+       </iframe>
       <div class="tags">
         <a href="">#Coding</a> <a href="">#Html</a> <a href="">#css</a>
         <a href="">#js</a>
       </div>
-      <h3>Ini adalah video yang paling terkenal</h3>
+      <h3>{{ $films->judul }}</h3>
       <div class="justify-text">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-          voluptatibus nesciunt optio hic, fugiat molestias, voluptate
-          perspiciatis fuga veritatis, suscipit sapiente ratione quos fugit
-          omnis sunt doloribus incidunt quae est.
+          {!! $films->deskripsi !!}
         </p>
         <br />
         <hr />
@@ -25,16 +24,20 @@
     </div>
     <div class="right-sidebar">
       <h3>Recent Video</h3>
+      @foreach ($recents as $recent)
       <div class="side-video-list">
         <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail1.png"
-        /></a>
+          ><img src="{{ asset('/storage/products/'.$recent->cover_path) }}" class="thumbnail" alt=""
+          /></a>
         <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
+          <a href="">{{ $recent->judul }}</a>
           <p>Easy Tutorials</p>
           <p>15k Views</p>
         </div>
       </div>
+          
+      @endforeach
+      
       <div class="side-video-list">
         <a href="" class="small-thumbnail"
           ><img src="images/thumbnail2.png"
