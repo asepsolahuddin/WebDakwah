@@ -4,7 +4,7 @@
 
 <div class="container-video">
   <div class="banner">
-    <img src="{{ asset('images/video/banner.png') }}" alt="" />
+    <img src="{{ asset('images/banner1.jpg') }}" alt="" />
   </div>
   <div class="list-container">
     @foreach ($videos as $video)

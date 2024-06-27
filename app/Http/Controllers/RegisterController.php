@@ -21,8 +21,42 @@ class RegisterController extends Controller
         auth()->login($user);
 
         return redirect()->route('login');
+    }
 
+    public function register_ustad(Request $request) {
 
+        dd($request);
+
+        
+        $request->validate([
+            'name' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'ktp_path' => 'required|image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+    
+        if ($request->hasFile('ktp_path')) {
+
+            $ktp_path = $request->file('ktp_path');
+            $ktp_path->storeAs('public/products', $ktp_path->hashName());
+    
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => 3,
+                'active_status' => 0,
+                'spesialis' => $request->spesialis,
+                'prestasi' => $request->prestasi,
+                'ktp_path' => $ktp_path->hashName(),
+            ]);
+    
+            return redirect()->route('login');
+        } else {
+            return back()->withErrors(['ktp_path' => 'KTP path is required and should be an image file.']);
+        }
+
+        return redirect()->route('login');
     }
 
     protected function validator(array $data){

@@ -5,7 +5,7 @@
   <!-- ======= Breadcrumbs ======= -->
   <section class="breadcrumbs">
     <div class="container">
-      <h2>Blog</h2>
+      <a href="{{ url('/halaman-artikel') }}"><h2>Artikel</h2></a>
     </div>
   </section>
   <!-- End Breadcrumbs -->
@@ -42,7 +42,7 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">
+                <a href="{{ route('welcome.artikel', $news->id) }}">
                 {{ $news->judul }}</a
                 >
               </h2>
@@ -50,24 +50,16 @@
               <div class="entry-meta">
                 <ul>
                   <li class="d-flex align-items-center">
-                    <i>Kategori :</i>
-                    <a href="blog-single.html">{{ $news->kategori }}</a>
+                    <i>Tanggal Upload :</i>
+                    {{ $news->created_at->format('d M Y') }}
                   </li>
                 </ul>
               </div>
 
               <div class="entry-content">
                 <p>
-                  Similique neque nam consequuntur ad non maxime aliquam quas.
-                  Quibusdam animi praesentium. Aliquam et laboriosam eius aut
-                  nostrum quidem aliquid dicta. Et eveniet enim. Qui velit est
-                  ea dolorem doloremque deleniti aperiam unde soluta. Est cum
-                  et quod quos aut ut et sit sunt. Voluptate porro consequatur
-                  assumenda perferendis dolore.
+                  {!! $news->tag_line !!}
                 </p>
-                <div class="read-more">
-                  <a href="blog-single.html">Read More</a>
-                </div>
               </div>
             </article>
             @endforeach
@@ -93,11 +85,11 @@
               <div class="post-item clearfix">
                 <img src="{{ asset('/storage/products/' . $recent->cover_path) }}" alt="" />
                 <h4>
-                  <a href="blog-single.html"
-                    >{{ $recent->judul }}</a
-                  >
+                  <a href="{{ route('welcome.artikel', $recent->id) }}">
+                    {{ $recent->judul }}
+                    </a>
                 </h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
+                <time datetime="2020-01-01">{{ $recent->created_at->format('d M Y') }}</time>
               </div>
               @endforeach
             </div>

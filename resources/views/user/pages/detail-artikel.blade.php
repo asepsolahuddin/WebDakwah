@@ -5,7 +5,7 @@
   <!-- ======= Breadcrumbs ======= -->
   <section class="breadcrumbs">
     <div class="container">
-      <h2>Artikel</h2>
+      <a href="{{ url('/halaman-artikel') }}"><h2>Artikel</h2></a>
     </div>
   </section>
   <!-- End Breadcrumbs -->

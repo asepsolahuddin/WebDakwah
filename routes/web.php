@@ -22,6 +22,8 @@ Route::get('/halaman-artikel',[HomeController::class, 'artikel'])->name('post.ar
 
 Route::get('register', [RegisterController::class,'halamanRegister'])->name('register');
 Route::post('register', [RegisterController::class, 'register']);
+Route::post('register_ustad', [RegisterController::class, 'register_ustad'])->name('registustad');
+
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/loginadmin', [AuthController::class, 'login'])->name('login');

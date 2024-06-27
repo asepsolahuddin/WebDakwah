@@ -13,8 +13,12 @@
                       <div class="text-center">
                           <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                       </div>
-                      <form method="post" action="{{ route('register') }}" class="user">
+                      <form method="post" action="{{ route('register') }}" class="user" id="form-register">
                         @csrf
+                          <div class="form-group ml-4">
+                              <input type="checkbox" class="form-check-input" id="cek_ustad">
+                              <label class="form-check-label" for="terms">Daftar Sebagai Ustad</label>
+                          </div>
                           <div class="form-group">
                               <input type="text" name="name" class="form-control form-control-user" value="{{ old('name') }}" id="name"
                               placeholder="Name">
@@ -28,6 +32,9 @@
                                   @if ($errors->has('email'))
                                   <span>{{ $errors->first('email') }}</span>
                                   @endif
+                          </div>
+                          <div id="additional_field">
+
                           </div>
                           <div class="form-group row">
                               <div class="col-sm-6 mb-3 mb-sm-0">
@@ -59,4 +66,8 @@
   </div>
 
 </div>  
+@endsection
+
+@section('footer-scripts')
+    @include('admin.script.rg-script')
 @endsection
