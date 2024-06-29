@@ -13,7 +13,7 @@
                       <div class="text-center">
                           <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                       </div>
-                      <form method="post" action="{{ route('register') }}" class="user" id="form-register">
+                      <form method="post" action="{{ route('register') }}" class="user" id="form-register" enctype="multipart/form-data">
                         @csrf
                           <div class="form-group ml-4">
                               <input type="checkbox" class="form-check-input" id="cek_ustad">

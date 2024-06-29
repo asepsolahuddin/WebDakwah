@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class SuperadminControler extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // $ustadCount = User::where('role', 'ustad')->count();
+        $ustadCount = User::where('role_id', 3)->count();
 
         $userCount = User::count();
 
@@ -19,13 +19,26 @@ class SuperadminControler extends Controller
 
         $artikelCount = Artikel::count();
 
-        return view('admin.pages.db-admin', compact('userCount', 'videoCount', 'artikelCount'));
+        $query = $request->input('query');
+
+        if (!is_null($query)) {
+            $users = User::where('name', 'LIKE', "%$query%")
+                        ->orWhere('role_id', 'LIKE', "%$query%")
+                        ->paginate(10);;
+        } else {
+            $users = User::paginate(10);
+        }
+    
+        return view('admin.pages.db-admin', compact('ustadCount','userCount', 'videoCount', 'artikelCount','users'));
     }
 
-    public function get_unverified_ustad()
+    public function destroy($id)
     {
+        $users = User::FindOrFail($id);
 
-        $unverified_ustad = User::where('active_status', 0)->where('role_id', 3)->get();
+        $users->delete();
+
+        return redirect()->route('dbadmin.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
     public function change_verified_ustad_status($id)

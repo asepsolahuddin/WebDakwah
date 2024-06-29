@@ -28,6 +28,13 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item {{ Request::is('dbustad*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('dbustads.index') }}">
+        <i class="fas fa-fw fa-user-group"></i>
+        <span>Ustad</span>
+    </a>
+  </li>
+
   <li class="nav-item {{ Request::is('dbartikels*') ? 'active' : '' }}">
       <a class="nav-link" href="{{ route('dbartikels.index') }}">
           <i class="fas fa-fw fa-file-lines"></i>

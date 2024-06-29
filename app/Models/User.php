@@ -21,9 +21,11 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'phone_number',
         'spesialis',
         'prestasi',
         'ktp_path',
+        'pp_path',
         'active_status'
     ];
 

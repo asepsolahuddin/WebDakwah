@@ -9,9 +9,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuperadminControler;
-
-
-
+use App\Http\Controllers\UstadController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/halaman-video',[HomeController::class, 'video']);
@@ -38,13 +36,18 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function() {
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
-    Route::get('/dbadmin', [SuperadminControler::class, 'index']);
+    Route::get('/dbadmin', [SuperadminControler::class, 'index'])->name('dbadmin.index');
+    Route::delete('/dbadmin/{id}',[SuperadminControler::class,'destroy'])->name('user.destroy');
+    Route::resource('dbustads',UstadController::class);
+    Route::resource('dbvideos', VideoController::class);
+    Route::resource('dbartikels', ArtikelController::class);
+
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/dashboard', [PegawaiControler::class, 'index']);
 });
 
+
+
 //database admin video crud
-Route::resource('dbvideos', VideoController::class);
-Route::resource('dbartikels', ArtikelController::class);

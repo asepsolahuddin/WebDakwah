@@ -92,15 +92,6 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('js/home/main.js') }}"></script>
   <script>
-  //     var menuIcon = document.querySelector(".menu-icon");
-  //     var sidebar = document.querySelector(".sidebar");
-  // v   ar container = document.querySelector(".container");
-
-  //     menuIcon.onclick = function () {
-  //     sidebar.classList.toggle("small-sidebar");
-  //     container.classList.toggle("large-container");
-  //     };
-
     function search() {
     var query = document.getElementById('search-input').value;
     window.location.href = "{{ route('search.video') }}" + "?query=" + encodeURIComponent(query);

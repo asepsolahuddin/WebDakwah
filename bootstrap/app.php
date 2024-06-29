@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
         $middleware->alias([
             'checkrole' => \App\Http\Middleware\CheckRole::class,
+            'web' => \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
