@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>FlexStart Bootstrap Template - Index</title>
+  <title>Website Nabi Muhammad SAW</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +39,7 @@
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span>Rosululloh Muhammad ﷺ</span>
       </a>
@@ -84,6 +84,10 @@
 
   @yield('content-page')
 
+  <footer class="footer">
+    <p>&copy; 2024 <a href="#">Website Nabi Muhammad SAW</a>
+    <p><i class="fas fa-phone"></i> Contact Admin: <a href="#">0851-5622-4649</a></p>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

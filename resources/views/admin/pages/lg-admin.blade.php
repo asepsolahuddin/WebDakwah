@@ -56,7 +56,9 @@
                                     <button type="submit" class="btn-primary btn-lg btn-block">Submit</button>
                                     
                                 </form>
-                                
+                                <div class="text-center mt-4">
+                                    <a class="small" href="{{ route('register') }}">Belum Punya Akun? Register disini!</a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -38,6 +38,7 @@
                   src="{{ asset('/storage/products/' . $news->cover_path) }}"
                   alt=""
                   class="img-fluid"
+                  style="width: 100%"
                 />
               </div>
 
@@ -89,7 +90,7 @@
                     {{ $recent->judul }}
                     </a>
                 </h4>
-                <time datetime="2020-01-01">{{ $recent->created_at->format('d M Y') }}</time>
+                <time>{{ $recent->created_at->format('d M Y') }}</time>
               </div>
               @endforeach
             </div>

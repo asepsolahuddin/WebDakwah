@@ -1,6 +1,12 @@
 @extends('admin.layout.main')
 
 @section('content-page')
+
+@if (session('success'))
+        <div class="alert alert-success ml-3 mr-3">
+            {{ session('success') }}
+        </div>
+@endif
 <div class="row">
   <div class="container-fluid">
 

@@ -11,9 +11,14 @@ class VideoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $videos = Video::latest()->paginate(10);
+        $query = $request->input('query');
+        if (!is_null($query)) {
+            $videos = Video::where('judul', 'LIKE', "%$query%")->paginate(10);
+        } else {
+            $videos = Video::latest()->paginate(10);
+        }
 
         //render view
         return view('admin.pages.db-video', compact('videos'));
@@ -33,7 +38,7 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'judul' => 'required',
             'cover_path' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'deskripsi' => 'required',
@@ -45,7 +50,7 @@ class VideoController extends Controller
             $cover_path->storeAs('public/products', $cover_path->hashName());
 
             Video::create([
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
                 'judul' => $request->judul,
                 'cover_path' =>$cover_path->hashName(),
                 'deskripsi' => $request->deskripsi,
@@ -81,12 +86,12 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'judul' => 'required',
             'cover_path' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'deskripsi' => 'required',
             'video_url' => 'required',
-            'kategori' => 'required',
+            // 'kategori' => 'required',
         ]);
     
         // Cari video
@@ -105,7 +110,7 @@ class VideoController extends Controller
     
             // Update video dengan gambar baru
             $video->update([
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
                 'judul' => $request->judul,
                 'cover_path' => $cover_path->hashName(),
                 'deskripsi' => $request->deskripsi,
@@ -114,7 +119,7 @@ class VideoController extends Controller
         } else {
             // Update video tanpa mengubah gambar
             $video->update([
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'video_url' => $request->video_url,

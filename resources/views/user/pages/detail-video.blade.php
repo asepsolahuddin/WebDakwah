@@ -10,8 +10,7 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
        </iframe>
       <div class="tags">
-        <a href="">#Coding</a> <a href="">#Html</a> <a href="">#css</a>
-        <a href="">#js</a>
+        <a href="">#Cinta Nabi Muhammad SAW</a>
       </div>
       <h3>{{ $films->judul }}</h3>
       <div class="justify-text">
@@ -30,73 +29,14 @@
           ><img src="{{ asset('/storage/products/'.$recent->cover_path) }}" class="thumbnail" alt=""
           /></a>
         <div class="vid-info">
-          <a href="">{{ $recent->judul }}</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
+          <a href="{{ route('detail.video', $recent->id) }}">{{ $recent->judul }}</a>
+          <p><time>{{ $recent->created_at->format('d M Y') }}</time></p>
         </div>
       </div>
           
       @endforeach
-      
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail2.png"
-        /></a>
-        <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
-        </div>
-      </div>
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail3.png"
-        /></a>
-        <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
-        </div>
-      </div>
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail4.png"
-        /></a>
-        <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
-        </div>
-      </div>
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail5.png"
-        /></a>
-        <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
-        </div>
-      </div>
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"
-          ><img src="images/thumbnail6.png"
-        /></a>
-        <div class="vid-info">
-          <a href="">Best Channerl that help you to be a web developer</a>
-          <p>Easy Tutorials</p>
-          <p>15k Views</p>
-        </div>
-      </div>
     </div>
   </div>
 </div>
-<footer class="footer">
-  <p>
-    &copy; 2024
-    <a href="https://yourwebsite.com">Adab Nabi Muhammad SAW</a>. All rights
-    reserved.
-  </p>
-</footer>
   
 @endsection

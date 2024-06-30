@@ -10,7 +10,7 @@ class Artikel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'judul',
         'cover_path',
         'tag_line',

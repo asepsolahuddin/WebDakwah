@@ -11,9 +11,14 @@ class ArtikelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $artikels = Artikel::latest()->paginate(10);
+        $query = $request->input('query');
+        if (!is_null($query)) {
+            $artikels = Artikel::where('judul', 'LIKE', "%$query%")->paginate(10);
+        } else {
+            $artikels = Artikel::latest()->paginate(10);
+        }
         //render view
         return view('admin.pages.db-artikel', compact('artikels'));
     }
@@ -32,7 +37,7 @@ class ArtikelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'cover_path' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'judul' => 'required',
             'tag_line'  => 'required', 
@@ -46,7 +51,7 @@ class ArtikelController extends Controller
     
             //insert artikels
             Artikel::create([
-            'user_id' => $request->user_id,
+            // 'user_id' => $request->user_id,
             'cover_path' =>$cover_path->hashName(),
             'judul' => $request->judul,
             'tag_line' => $request->tag_line,
@@ -82,7 +87,7 @@ class ArtikelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'judul' => 'required',
             'cover_path' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'tag_line' => 'required',
@@ -105,7 +110,7 @@ class ArtikelController extends Controller
     
             // Update artikels dengan gambar baru
             $artikels->update([
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
                 'judul' => $request->judul,
                 'cover_path' => $cover_path->hashName(),
                 'tag_line' => $request->tag_line,
@@ -114,7 +119,7 @@ class ArtikelController extends Controller
         } else {
             // Update artikels tanpa mengubah gambar
             $artikels->update([
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
                 'judul' => $request->judul,
                 'tag_line' => $request->tag_line,
                 'deskripsi' => $request->deskripsi,

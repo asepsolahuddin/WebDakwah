@@ -12,7 +12,7 @@
                       @csrf
                       @method('PUT')
 
-                      <div class="form-group mb-3">
+                      {{-- <div class="form-group mb-3">
                         <label class="font-weight-bold">User</label>
                         <input type="text" class="form-control @error('user_id') is-invalid @enderror" name='user_id' value="{{ old('user_id',$videos->user_id) }}" placeholder="user_id">
                     
@@ -22,7 +22,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="form-group mb-3">
                       <label class="font-weight-bold">Judul</label>
@@ -76,13 +76,13 @@
 
             <div class="row">
               <div class="col-md-6 ml-4 mb-3">
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                   <label class="font-weight-bold">Status : </label>
                       <select name="status" id="status">
                           <option value="aktif">Aktif</option>
                           <option value="non_aktif">Non-aktif</option>
                        </select>
-                </div>
+                </div> --}}
                 
                 <button type="submit" class="btn btn-md btn-primary me-3">SAVE</button>
                 <button type="reset" class="btn btn-md btn-warning">RESET</button>

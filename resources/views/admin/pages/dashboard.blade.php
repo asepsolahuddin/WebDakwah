@@ -9,8 +9,9 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/db31522e5d.js" crossorigin="anonymous"></script>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -20,37 +21,29 @@
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+
+
   <!-- Main CSS File -->
   <link href="{{ asset('css/user/main.css') }}" rel="stylesheet">
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+  <header id="header" class="header d-flex align-items-center sticky-top bg-light shadow-sm py-3">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      
+      <a href="{{ route('home.index') }}" class="logo d-flex align-items-center text-decoration-none text-dark">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Rosululloh Muhammad ﷺ</h1>
+        <h1 class="h4 m-0">Rosululloh Muhammad ﷺ</h1>
       </a>
-
+      
       <nav id="navbar" class="navbar">
-           
-        <a href="{{ route('chatify') }}" class="btn-getstarted mr-4">Chat</a></i>
-
-        <form action="/logout" method="post">
+        <form action="/logout" method="post" class="d-inline">
           @csrf
           <button type="submit" class="btn btn-primary">Logout</button>
         </form>
-        
       </nav>
-
-      
-      <div>
-    </div>
-      
-
     </div>
   </header>
 
@@ -59,28 +52,80 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section">
 
-      <img src="{{ asset('images/hero-bg-abstract.jpg') }}" alt="" data-aos="fade-in" class="">
+      <img src="{{ asset('images/hero-bg-abstract.jpg') }}" alt="" data-aos="fade-in" class="images">
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-out">
           <div class="col-xl-7 col-lg-9 text-center">
             <h1>Chating Bersama Dengan Ustad</h1>
-            <p>Anda bisa berkirim pesan ataupun konsul mengenai permasalahan anda dengan ustad yang ada, anda pun bisa menjadi bagian dari ustad yang memberikan ilmu dengan mendaftar dibawah ini</p>
+            <p>Anda bisa berkirim pesan ataupun konsul mengenai permasalahan anda dengan ustad ataupun berbicara dengan user lainnya, dengan klik tombol dibawah ini</p>
           </div>
         </div>
-        <div class="text-center" data-aos="zoom-out" data-aos-delay="100">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Daftar</button>
+        <div class="text-center mb-5" data-aos="zoom-out" data-aos-delay="100">
+          <a href="{{ route('chatify') }}" class="btn btn-primary mt-4">Chat</a>
         </div>
+        
+        <form action="{{ route('dashboard.index') }}" method="GET" class="form-inline my-2 my-lg-0">
+          <input class="form-control form-control-lg form-control-long mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary btn-lg my-2 my-sm-0" type="submit">Search</button>
+        </form>
 
-        <div class="row gy-4 mt-5">
-          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-easel"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+        <div class="row gy-4 mt-5 ml-5">
+        @if(!$dataFound)
+          <div class="alert alert-warning" role="alert">
+              Data tidak Ditemukan
+          </div>
+        @else
+        @foreach ($ustads as $ustad)
+        <div class="card mr-4 mt-4" style="width: 19rem;">
+          <img src="{{ asset('/storage/products/'.$ustad->pp_path) }}" class="card-img-top" style="width: 100%; height:250px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ $ustad->name }}</h5>
+            <hr>
+            <div class="d-flex align-items-center">
+              <i class="fas fa-graduation-cap mr-2 text-success"></i>
+              <p class="card-text" style="font-size: 15px">spesialis di bidang: {{ $ustad->spesialis }}</p>
             </div>
-          </div><!--End Icon Box -->
+            <hr>
+            <div class="d-flex align-items-center">
+              <i class="fas fa-award mt-3 ml-1 mr-2 text-warning"></i>
+              <p class="card-text" style="font-size: 15px">memiliki prestasi sebagai berikut:</p>
+            </div>
+            <p class="card-text" style="font-size: 15px">{{ $ustad->prestasi }}</p>
+            
+          </div>
+        </div>
+        @endforeach
+        {{ $ustads->links('pagination::bootstrap-5') }}
+      @endif
+        
+          
+          <!--End Icon Box -->
 
+          {{-- <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-gem"></i></div>
+              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div> --}}
+          
+          {{-- <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-gem"></i></div>
+              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-gem"></i></div>
+              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+          
           <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-gem"></i></div>
@@ -103,7 +148,7 @@
               <h4 class="title"><a href="">Nemo Enim</a></h4>
               <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
             </div>
-          </div><!--End Icon Box -->
+          </div><!--End Icon Box --> --}}
 
         </div>
       </div>

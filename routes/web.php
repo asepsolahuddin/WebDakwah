@@ -11,7 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuperadminControler;
 use App\Http\Controllers\UstadController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/halaman-video',[HomeController::class, 'video']);
 Route::get('/detail-video/{id}',[HomeController::class, 'detail_video'])->name('detail.video');
 Route::get('/search-video',[HomeController::class, 'search_video'])->name('search.video');
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
-    Route::get('/dashboard', [PegawaiControler::class, 'index']);
+    Route::get('/dashboard', [PegawaiControler::class, 'index'])->name('dashboard.index');
 });
 
 

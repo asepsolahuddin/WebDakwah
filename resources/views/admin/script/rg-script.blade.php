@@ -44,7 +44,7 @@
 
         } else {
             //hapus input
-            $('#ktp-div, #prestasi-div, #spesialis-div').remove();
+            $('#ktp-div, #prestasi-div, #spesialis-div, #phone-div, #pp-div').remove();
 
             //ubah action to register user
             $('#form-register').attr('action', '{{ route('register') }}');
