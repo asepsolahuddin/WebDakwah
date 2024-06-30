@@ -22,6 +22,10 @@ class AuthController extends Controller
 
         $getUserDataByEmail = User::where('email', $credentials['email'])->first();
 
+        if(!$getUserDataByEmail) {
+            return back()->with('error', 'Akun Tidak Ditemukan');
+        }
+
         if($getUserDataByEmail->active_status == 0) {
             return back()->with('error', 'Akun belum aktif');
         }
