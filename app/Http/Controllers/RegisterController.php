@@ -2,29 +2,87 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    public function halamanRegister(){
+    public function halamanRegister()
+    {
         return view('admin.pages.rg-admin');
     }
 
-    public function register(Request $request){
-        $this->validator($request->all())->validate();
-        
-        $user = $this->create($request->all());
+    public function register(Request $request)
+    {
+        try {
+            $this->validator($request->all())->validate();
 
-        auth()->login($user);
+            $user = $this->create($request->all());
 
+            $this->sendMail($user->id, $user->email);
+
+            return redirect()->back()->with('success', "Akun anda berhasil dibuat, silakan verifikasi untuk masuk ke website");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+
+    public function sendMail($id, $email)
+    {
+        try {
+            $encodedToken = $this->generateVerificationToken($id);
+            $link = 'http://127.0.0.1:8000/verify-user/' . $encodedToken;
+            $data = [
+                'link' => $link,
+            ];
+            Mail::to($email)->send(new SendEmail($data));
+            return array('success' => true, 'message' => "Success Send Email Verification");
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
+
+    public function generateVerificationToken($idRegisteredUser)
+    {
+        $idUser = $idRegisteredUser;
+        $secretKey = "asepDito";
+        $expiredLink = time() + 60 * 60;
+
+        $plainToken = "$idUser:$secretKey:$expiredLink";
+        $encodedToken = base64_encode($plainToken);
+        return $encodedToken;
+    }
+
+    public function verifyUser($token)
+    {
+        $decodedToken = base64_decode($token);
+        $plainToken = explode(":", $decodedToken);
+        $secretKey = "asepDito";
+
+        $idUser = $plainToken[0];
+        $secretKeyToken = $plainToken[1];
+        $expiredToken = $plainToken[2];
+
+        if ($secretKeyToken != $secretKey) {
+            dd("Token Invalid");
+        }
+
+        if ($expiredToken < time()) {
+            dd("Token Expired");
+        }
+
+        User::where('id', $idUser)->update(['active_status' => 1]);
         return redirect()->route('login');
     }
 
-    public function register_ustad(Request $request) {
-        
+    public function register_ustad(Request $request)
+    {
+
         $request->validate([
             'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
@@ -39,40 +97,40 @@ class RegisterController extends Controller
 
         $pp_path = $request->file('pp_path');
         $pp_path->storeAs('public/products', $pp_path->hashName());
-    
-    
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role_id' => 3,
-                'active_status' => 0,
-                'phone_number' => $request->phone_number,
-                'spesialis' => $request->spesialis,
-                'prestasi' => $request->prestasi,
-                'ktp_path' => $ktp_path->hashName(),
-                'pp_path' => $pp_path->hashName(),
-            ]);
-    
-            return redirect()->route('login');
+
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => 3,
+            'active_status' => 0,
+            'phone_number' => $request->phone_number,
+            'spesialis' => $request->spesialis,
+            'prestasi' => $request->prestasi,
+            'ktp_path' => $ktp_path->hashName(),
+            'pp_path' => $pp_path->hashName(),
+        ]);
+
+        return redirect()->route('login');
     }
 
-    protected function validator(array $data){
+    protected function validator(array $data)
+    {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255','unique:users'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
-    protected function create(array $data){
+    protected function create(array $data)
+    {
         return User::create([
             'name' => $data['name'],
-            'email'=> $data['email'],
-            'password'=> Hash::make($data['password']),
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
             'role_id' => '2'
         ]);
     }
-    }
-        
-
+}

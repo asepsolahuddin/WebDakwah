@@ -22,6 +22,7 @@ Route::get('register', [RegisterController::class,'halamanRegister'])->name('reg
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('register_ustad', [RegisterController::class, 'register_ustad'])->name('registustad');
 
+Route::get('verify-user/{token}', [RegisterController::class,'verifyUser']);
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/loginadmin', [AuthController::class, 'login'])->name('login');
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/dashboard', [PegawaiControler::class, 'index'])->name('dashboard.index');
+    Route::get('/sendmail', [PegawaiControler::class, 'sendMail']);
 });
 
 
