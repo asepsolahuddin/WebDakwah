@@ -2097,6 +2097,16 @@ section,
     color: var(--accent-color);
 }
 
+@media (max-width: 768px) {
+    .form-inline .form-control-long {
+        width: 70%; /* Tambahkan margin bawah untuk jarak yang lebih baik */
+    }
+
+    .form-inline .btn-lg {
+        width: 25%; /* Lebar penuh untuk tombol */
+    }
+}
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

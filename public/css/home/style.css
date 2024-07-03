@@ -362,6 +362,18 @@ section {
     }
 }
 
+@media (max-width: 768px) {
+    .header .logo span {
+        font-size: 24px;
+    }
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 480px) {
+    .header .logo span {
+        font-size: 20px;
+    }
+}
 /**
 * Mobile Navigation 
 */

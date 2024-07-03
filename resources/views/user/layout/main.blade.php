@@ -52,11 +52,11 @@
             @auth
             <li><a href="{{ url('/loginadmin') }}" class="getstarted scrollto">chat</a></li>
             @else
-            <li><a href="{{ route('login') }}" class="getstarted scrollto">Log in</a></li>
-
+            <li><a href="{{ route('login') }}" class="getstarted scrollto">Chat dengan Ustad</a></li>
+{{-- 
                 @if (Route::has('register'))
                 <li><a href="{{ route('register') }}" class="getstarted scrollto">Register</a></li>
-                @endif
+                @endif --}}
             @endauth
             @endif
         </ul>

@@ -24,7 +24,7 @@
         <br />
         @endforeach
         <!-- Tambahkan link pagination -->
-        {{ $results->appends(['query' => $query])->links() }}
+        {{ $results->appends(['query' => $query])->links('pagination::bootstrap-5') }}
     @endif
   
 @endsection

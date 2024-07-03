@@ -22,7 +22,7 @@
                   <hr>
                   <div class="d-flex align-items-center">
                       <i class="fas fa-phone-alt mr-2 text-primary"></i>
-                      <h5 class="card-title font-weight-normal text-dark mb-0">No: 085156224649</h5>
+                      <h5 class="card-title font-weight-normal text-dark mb-0">{{ $dtustad->phone_number }}</h5>
                   </div>
                   <hr>
                   <div class="d-flex align-items-center">

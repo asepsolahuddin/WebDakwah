@@ -54,7 +54,7 @@ class HomeController extends Controller
     
 
     public function video(){
-        $videos = Video::orderBy('created_at', 'desc')->get();
+        $videos = Video::orderBy('created_at', 'desc')->paginate(8);
 
         return view('user.pages.video', compact('videos'));
     

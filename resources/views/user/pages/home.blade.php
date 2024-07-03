@@ -40,9 +40,11 @@
         </div>
 
         <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-          <video controls>
-            <source src="{{ asset('images/videoplayback.mp4') }}" type="video/webm">
-          </video>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video class="embed-responsive-item" controls>
+                    <source src="{{ asset('images/videoplayback.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
         </div>
 
       </div>

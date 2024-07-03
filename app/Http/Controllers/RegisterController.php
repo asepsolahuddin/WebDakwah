@@ -41,6 +41,7 @@ class RegisterController extends Controller
                 'link' => $link,
             ];
             Mail::to($email)->send(new SendEmail($data));
+            
             return array('success' => true, 'message' => "Success Send Email Verification");
         } catch (\Throwable $th) {
             return $th;
@@ -50,7 +51,7 @@ class RegisterController extends Controller
     public function generateVerificationToken($idRegisteredUser)
     {
         $idUser = $idRegisteredUser;
-        $secretKey = "asepDito";
+        $secretKey = "Rahasia";
         $expiredLink = time() + 60 * 60;
 
         $plainToken = "$idUser:$secretKey:$expiredLink";
@@ -62,7 +63,7 @@ class RegisterController extends Controller
     {
         $decodedToken = base64_decode($token);
         $plainToken = explode(":", $decodedToken);
-        $secretKey = "asepDito";
+        $secretKey = "Rahasia";
 
         $idUser = $plainToken[0];
         $secretKeyToken = $plainToken[1];

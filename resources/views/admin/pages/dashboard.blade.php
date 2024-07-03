@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - OnePage Bootstrap Template</title>
+  <title>Website Nabi Muhammad SAW</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -35,7 +35,7 @@
       <a href="{{ route('home.index') }}" class="logo d-flex align-items-center text-decoration-none text-dark">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="h4 m-0">Rosululloh Muhammad ﷺ</h1>
+        <h4>Rosululloh Muhammad ﷺ</h4>
       </a>
       
       <nav id="navbar" class="navbar">
