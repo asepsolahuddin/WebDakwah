@@ -94,120 +94,18 @@
             <p class="card-text" style="font-size: 15px">{{ $ustad->prestasi }}</p>
             
           </div>
+          <div class="text-center mb-5" data-aos="zoom-out" data-aos-delay="100">
+            <a href="{{ route('chatify')}}/{{$ustad->id}}" class="btn btn-primary mt-4">Chat</a>
+          </div>
         </div>
         @endforeach
         {{ $ustads->links('pagination::bootstrap-5') }}
       @endif
-        
-          
-          <!--End Icon Box -->
-
-          {{-- <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div> --}}
-          
-          {{-- <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div><!--End Icon Box -->
-
-          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div><!--End Icon Box -->
-
-          <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="400">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-command"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div><!--End Icon Box --> --}}
 
         </div>
       </div>
 
-    </section>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">User_ID:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Nama:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group">
-                <label class="font-weight-bold">Foto KTP</label>
-                    <input type="file" class="form-control @error('cover_path') is-invalid @enderror"  name='cover_path'>
-                          @error('cover_path')
-                              <div class="alert alert-danger mt-2">
-                                  {{ $message }}
-                              </div>
-                          @enderror
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">Spesialis bidang ilmu agama:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">Prestasi Yang Diraih:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="font-weight-bold">Foto Piagam</label>
-                    <input type="file" class="form-control @error('piagam') is-invalid @enderror"  name='piagam'>
-                          @error('piagam')
-                              <div class="alert alert-danger mt-2">
-                                  {{ $message }}
-                              </div>
-                          @enderror
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-          </div>
-        </div>
-      </div>
-    </div><!-- /Hero Section -->
+    </section><!-- /Hero Section -->
 
     <!-- About Section -->
     {{-- <section id="about" class="about section">

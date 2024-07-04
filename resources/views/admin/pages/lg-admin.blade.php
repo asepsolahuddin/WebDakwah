@@ -30,6 +30,13 @@
                                     </div>
                                   </div>
                                 @endif
+                                @if (session()->has('success'))
+                                  <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                      <div>
+                                          {{ session('success') }}
+                                      </div>
+                                  </div>
+                                @endif
                                 <form class="user" method="POST" action="/loginadmin">
                                     @csrf
                                     <div class="form-group">

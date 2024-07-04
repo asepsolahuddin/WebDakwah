@@ -70,15 +70,20 @@ class RegisterController extends Controller
         $expiredToken = $plainToken[2];
 
         if ($secretKeyToken != $secretKey) {
-            dd("Token Invalid");
+            return redirect()->route('login')->with('error', 'Link Tidak Sesuai');
         }
+
+        $user = User::find($idUser);
 
         if ($expiredToken < time()) {
-            dd("Token Expired");
+            if ($user) {
+                $user->delete();
+            }
+            return redirect()->route('login')->with('error', 'Kelamaan bro, Tokennya expired silahkan register kembali');
         }
-
+        
         User::where('id', $idUser)->update(['active_status' => 1]);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Selamat akun anda sudah terdaftar, Silahkan Login');
     }
 
     public function register_ustad(Request $request)
