@@ -118,7 +118,7 @@ class RegisterController extends Controller
             'pp_path' => $pp_path->hashName(),
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Selamat akun anda sudah terdaftar, Silahkan Tunggu Konfirmasi dari admin');
     }
 
     protected function validator(array $data)

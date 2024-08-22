@@ -14,15 +14,15 @@ class PegawaiControler extends Controller
         $dataFound = true;
 
         if (!is_null($query)) {
-            $ustads = User::where('active_status', 1)
-                    ->where(function($q) use ($query) {
-                        $q->where('name', 'LIKE', "%$query%")
-                          ->orWhere('spesialis', 'LIKE', "%$query%")
-                          ->orWhere('prestasi', 'LIKE', "%$query%");
-                    })
-                    ->paginate(8);
+            $ustads = User::where('role_id', 3)
+                 ->where('active_status', 1)
+                 ->where(function($q) use ($query) {
+                     $q->where('name', 'LIKE', "%$query%")
+                       ->orWhere('spesialis', 'LIKE', "%$query%");
+                 })
+                 ->paginate(6);
         } else {
-            $ustads = User::where('role_id', 3)->where('active_status',1)->paginate(8);
+            $ustads = User::where('role_id', 3)->where('active_status',1)->paginate(6);
         }
 
         if ($ustads->isEmpty()) {

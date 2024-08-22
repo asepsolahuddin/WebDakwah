@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -30,29 +31,14 @@ class AuthController extends Controller
             return back()->with('error', 'Akun belum aktif');
         }
 
-        auth()->attempt($credentials);
         
-        // if (auth()->attempt($credentials)) {
-
-        //     // buat ulang session login
-        //     $request->session()->regenerate();
-
-        //     if (auth()->user()->active_status == 0) {
-        //         return back()->with('error', 'akun tidak aktif');
-        //     }
-
-        //     if (auth()->user()->role_id === 1) {
-        //         // jika user superadmin
-        //         return redirect()->intended('/dbadmin');
-        //     } else {
-        //         // jika user pegawai
-        //         return redirect()->intended('/dashboard');
-        //     }
-        // }
-
-        // jika email atau password salah
-        // kirimkan session error
-        return back()->with('error', 'email atau password salah');
+        if (auth()->attempt($credentials)) {
+            return redirect()->intended('dashboard'); // Redirect to intended page after successful login
+        }else{
+            return back()->with('error', 'email atau password salah');
+        }
+        
+        
     }
 
     public function logout(Request $request)

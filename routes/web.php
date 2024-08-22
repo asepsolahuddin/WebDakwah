@@ -3,13 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UstadController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\PegawaiControler;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuperadminControler;
-use App\Http\Controllers\UstadController;
+use Chatify\Http\Controllers\MessagesController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/halaman-video',[HomeController::class, 'video']);
@@ -50,6 +51,6 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3']], function() {
     Route::get('/sendmail', [PegawaiControler::class, 'sendMail']);
 });
 
-
+Route::get('/chatify/{id}', [MessagesController::class, 'index'])->name('chatify.ustad');
 
 //database admin video crud
